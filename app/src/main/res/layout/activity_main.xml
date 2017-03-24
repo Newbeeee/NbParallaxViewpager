@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.newbeeee.qt.nbhosthomeforaribnb.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/nb_toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <ImageView
+        android:id="@+id/nb_bg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/nb_toolBar"
+        android:scaleType="centerCrop"
+        android:src="@drawable/nb_bg"/>
+
+    <RelativeLayout
+        android:id="@+id/nb_sticky_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_below="@+id/nb_bg">
+
+        <ImageView
+            android:id="@+id/nb_avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/nb_avatar"/>
+
+        <ImageButton
+            android:id="@+id/nb_btn_1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toLeftOf="@id/nb_btn_2"/>
+
+        <ImageButton
+            android:id="@+id/nb_btn_2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toLeftOf="@+id/nb_btn_3"/>
+
+        <ImageButton
+            android:id="@+id/nb_btn_3"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/nb_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/nb_sticky_tab_bar"/>
+
+
+</RelativeLayout>
