@@ -8,12 +8,15 @@
     tools:context="com.newbeeee.qt.nbhosthomeforaribnb.MainActivity">
 
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/nb_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <RelativeLayout
         android:id="@+id/nb_header"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/nb_toolBar"
-        android:orientation="vertical">
+        android:layout_height="200dp">
 
         <ImageView
             android:id="@+id/nb_imageView"
@@ -23,27 +26,21 @@
             android:src="@drawable/nb_bg" />
 
 
-        <android.support.design.widget.TabLayout
+        <com.newbeeee.qt.nbhosthomeforaribnb.slidingTab.SlidingTabLayout
             android:id="@+id/nb_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
+            android:background="@color/bgGray"
             android:alpha="0.5"
-            android:background="@color/bgGray" />
+            app:shouldExpand="true"
+            android:layout_alignParentBottom="true"
+            app:indicatorColor="@color/colorAccent"
+            app:tabBackground="@layout/sliding_tab_view"
+            app:tabBackgroundTextViewId="@+id/tab_textview" />
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/nb_viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/nb_header"
-        android:background="@color/bgGray" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/nb_toolBar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
 
 </RelativeLayout>

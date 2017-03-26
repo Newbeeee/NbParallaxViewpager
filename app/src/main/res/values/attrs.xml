@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SlidingTabLayout">
+        <attr name="indicatorColor" format="color"/>
+        <attr name="shouldExpand" format="boolean" />
+        <attr name="tabBackground" format="reference" />
+        <attr name="tabBackgroundTextViewId" format="reference"/>
+    </declare-styleable>
+</resources>
