@@ -26,17 +26,13 @@
             android:src="@drawable/nb_bg" />
 
 
-        <com.newbeeee.qt.nbhosthomeforaribnb.slidingTab.SlidingTabLayout
+        <android.support.design.widget.TabLayout
             android:id="@+id/nb_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/bgGray"
             android:alpha="0.5"
-            app:shouldExpand="true"
-            android:layout_alignParentBottom="true"
-            app:indicatorColor="@color/colorAccent"
-            app:tabBackground="@layout/sliding_tab_view"
-            app:tabBackgroundTextViewId="@+id/tab_textview" />
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
 

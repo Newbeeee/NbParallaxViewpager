@@ -1,6 +1,7 @@
 package com.newbeeee.qt.nbhosthomeforaribnb;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -9,14 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.newbeeee.qt.nbhosthomeforaribnb.slidingTab.SlidingTabLayout;
 
 public class MainActivity extends AppCompatActivity implements ScrollHolder {
 
     protected static final String IMAGE_TRANSLATION_Y = "image_translation_y";
     protected static final String HEADER_TRANSLATION_Y = "header_translation_y";
 
-    private SlidingTabLayout mTabLayout;
+    private TabLayout mTabLayout;
     private ImageView mImageView;
 
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ScrollHolder {
         mViewPager = (ViewPager) findViewById(R.id.nb_viewPager);
 
 
-        mTabLayout = (SlidingTabLayout) findViewById(R.id.nb_tab_layout);
+        mTabLayout = (TabLayout) findViewById(R.id.nb_tab_layout);
 
         if (savedInstanceState != null) {
             mImageView.setTranslationY(savedInstanceState.getFloat(IMAGE_TRANSLATION_Y));
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements ScrollHolder {
 
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(mNumFragments);
-        mTabLayout.setOnPageChangeListener(new ParallaxViewPagerChangeListener(mViewPager, mAdapter, mHeader));
-        mTabLayout.setViewPager(mViewPager);
+        mViewPager.addOnPageChangeListener(new ParallaxViewPagerChangeListener(mViewPager, mAdapter, mHeader));
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
