@@ -32,7 +32,7 @@ public class CheeseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         View view;
         if (viewType == TYPE_HEADER) {
             view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recycler_header, parent, false);
+                    .inflate(R.layout.scroll_content_header, parent, false);
             return new RecyclerHeaderViewHolder(view);
         } else if (viewType == TYPE_ITEM) {
             view = LayoutInflater.from(parent.getContext())

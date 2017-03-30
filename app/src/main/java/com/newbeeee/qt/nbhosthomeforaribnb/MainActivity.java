@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabHeight = getResources().getDimensionPixelOffset(R.dimen.tab_height);
+        tabHeight = getResources().getDimensionPixelSize(R.dimen.tab_height);
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
         mMinHeaderTranslation = -mHeaderHeight + tabHeight;
         mImageView = (ImageView) findViewById(R.id.nb_imageView);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
     }
 
     @Override
-    public void onRecyclerViewScroll(int scrollY, int pagePosition) {
+    public void onScrollingContentScroll(int scrollY, int pagePosition) {
         if (mViewPager.getCurrentItem() == pagePosition) {
             float translationY = Math.max(-scrollY, mMinHeaderTranslation);
             mHeader.setTranslationY(translationY);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
                     break;
 
                 case 1:
-                    fragment = CheeseListFragment.newInstance(1);
+                    fragment = CardScrollViewFragment.newInstance(1);
                     break;
 
                 case 2:

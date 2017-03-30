@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class CheeseListFragment extends Fragment implements TabHolderScrollingContent {
 
-    protected static final String ARG_POSITION = "position";
+    private static final String ARG_POSITION = "position";
     private RecyclerView mRecyclerView;
     private HostView mHostView;
     private int mScrollY;
@@ -37,9 +37,6 @@ public class CheeseListFragment extends Fragment implements TabHolderScrollingCo
         return fragment;
     }
 
-    public CheeseListFragment() {
-
-    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -78,7 +75,7 @@ public class CheeseListFragment extends Fragment implements TabHolderScrollingCo
                 Log.e("mScrollY in scroll:", String.valueOf(mScrollY));
 
                 if (mHostView != null) {
-                    mHostView.onRecyclerViewScroll(mScrollY, mPosition);
+                    mHostView.onScrollingContentScroll(mScrollY, mPosition);
                 }
             }
         });
