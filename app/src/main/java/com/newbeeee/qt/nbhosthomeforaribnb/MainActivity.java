@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.newbeeee.qt.nbhosthomeforaribnb.listContent.NumberListFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
 import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxFragmentPagerAdapter;
 import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxViewPagerChangeListener;
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
                     break;
 
                 case 2:
-                    fragment = CheeseListFragment.newInstance(2);
+                    fragment = NumberListFragment.newInstance(2);
                     break;
 
                 default:
