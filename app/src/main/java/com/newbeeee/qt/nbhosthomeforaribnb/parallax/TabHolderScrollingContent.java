@@ -1,4 +1,4 @@
-package com.newbeeee.qt.nbhosthomeforaribnb;
+package com.newbeeee.qt.nbhosthomeforaribnb.parallax;
 /**
  * Created by xiuxiongding on 2017/3/25.
  */

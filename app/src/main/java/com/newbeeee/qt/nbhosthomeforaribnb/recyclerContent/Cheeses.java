@@ -1,4 +1,6 @@
-package com.newbeeee.qt.nbhosthomeforaribnb;
+package com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent;
+
+import com.newbeeee.qt.nbhosthomeforaribnb.R;
 
 import java.util.Random;
 

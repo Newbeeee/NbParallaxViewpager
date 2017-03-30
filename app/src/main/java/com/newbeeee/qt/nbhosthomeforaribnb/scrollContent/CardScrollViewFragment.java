@@ -1,4 +1,4 @@
-package com.newbeeee.qt.nbhosthomeforaribnb;
+package com.newbeeee.qt.nbhosthomeforaribnb.scrollContent;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,11 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
+import com.newbeeee.qt.nbhosthomeforaribnb.R;
+import com.newbeeee.qt.nbhosthomeforaribnb.parallax.TabHolderScrollingContent;
+
 /**
  * Created by xiuxiongding on 2017/3/30.
  */
 
-public class CardScrollViewFragment extends Fragment implements TabHolderScrollingContent{
+public class CardScrollViewFragment extends Fragment implements TabHolderScrollingContent {
 
     private static final String ARG_POSITION = "position";
     private ResponseScrollView mScrollView;

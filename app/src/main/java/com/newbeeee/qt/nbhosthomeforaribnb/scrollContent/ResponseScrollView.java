@@ -1,4 +1,4 @@
-package com.newbeeee.qt.nbhosthomeforaribnb;
+package com.newbeeee.qt.nbhosthomeforaribnb.scrollContent;
 
 import android.content.Context;
 import android.util.AttributeSet;

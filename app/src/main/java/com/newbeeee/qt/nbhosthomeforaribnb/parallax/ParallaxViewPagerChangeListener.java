@@ -1,4 +1,4 @@
-package com.newbeeee.qt.nbhosthomeforaribnb;
+package com.newbeeee.qt.nbhosthomeforaribnb.parallax;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;

@@ -10,6 +10,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
+import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxFragmentPagerAdapter;
+import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxViewPagerChangeListener;
+import com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent.CheeseListFragment;
+import com.newbeeee.qt.nbhosthomeforaribnb.scrollContent.CardScrollViewFragment;
+
 
 public class MainActivity extends AppCompatActivity implements HostView {
 

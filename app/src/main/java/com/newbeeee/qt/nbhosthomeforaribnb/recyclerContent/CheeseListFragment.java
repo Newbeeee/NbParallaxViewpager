@@ -1,4 +1,4 @@
-package com.newbeeee.qt.nbhosthomeforaribnb;
+package com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent;
 
 
 import android.app.Activity;
@@ -10,6 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
+import com.newbeeee.qt.nbhosthomeforaribnb.R;
+import com.newbeeee.qt.nbhosthomeforaribnb.parallax.TabHolderScrollingContent;
 
 import java.util.ArrayList;
 import java.util.List;
