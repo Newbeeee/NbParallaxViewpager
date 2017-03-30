@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ public class NumberListFragment extends Fragment implements TabHolderScrollingCo
     private int mPosition;
     private HostView mHostView;
     private int mHeaderHeight;
-    private View child;
+    private View mListHeaderView;
 
     public static Fragment newInstance(int position) {
         NumberListFragment fragment = new NumberListFragment();
@@ -59,9 +58,8 @@ public class NumberListFragment extends Fragment implements TabHolderScrollingCo
         mPosition = getArguments().getInt(ARG_POSITION);
         View view = inflater.inflate(R.layout.fragment_number_list, container, false);
         mListView = (ListView) view.findViewById(R.id.nb_listView);
-        View headerView = inflater.inflate(R.layout.scroll_content_header, mListView, false);
-        mListView.addHeaderView(headerView);
-        child = headerView;
+        mListHeaderView = inflater.inflate(R.layout.scroll_content_header, mListView, false);
+        mListView.addHeaderView(mListHeaderView);
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
         setListView();
         return view;
@@ -77,7 +75,7 @@ public class NumberListFragment extends Fragment implements TabHolderScrollingCo
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                mHostView.onScrollingContentScroll(getScrollYOfListView(view), mPosition);
+                mHostView.onScrollingContentScroll(-mListHeaderView.getTop(), mPosition);
             }
         });
         setAdapter();
@@ -96,17 +94,6 @@ public class NumberListFragment extends Fragment implements TabHolderScrollingCo
                 new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, stringArray);
 
         mListView.setAdapter(adapter);
-    }
-
-    private int getScrollYOfListView(AbsListView view) {
-        if (child == null) {
-            return 0;
-        }
-
-        // 这里有坑
-        int firstVisiblePosition = view.getFirstVisiblePosition();
-        int top = child.getTop();
-        return -top + firstVisiblePosition * child.getHeight();
     }
 
     @Override

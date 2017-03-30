@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements HostView {
             float translationY = Math.max(-scrollY, mMinHeaderTranslation);
             mHeader.setTranslationY(translationY);
             mImageView.setTranslationY(-translationY / 3);
-            Log.e("mHeader.getTranslationY:", String.valueOf(mHeader.getTranslationY()));
         }
     }
 

@@ -40,7 +40,6 @@ public class ParallaxViewPagerChangeListener implements ViewPager.OnPageChangeLi
                 fragmentContent = scrollTabHolders.valueAt(position + 1);
             }
 
-            Log.e("mHeader.getTranslationY:", String.valueOf(mHeader.getTranslationY()));
             fragmentContent.adjustScroll((int) mHeader.getTranslationY());
         }
     }
@@ -54,7 +53,6 @@ public class ParallaxViewPagerChangeListener implements ViewPager.OnPageChangeLi
         }
 
         TabHolderScrollingContent currentHolder = scrollTabHolders.valueAt(position);
-        Log.e("mHeader.getTranslationY:", String.valueOf(mHeader.getTranslationY()));
         currentHolder.adjustScroll((int) mHeader.getTranslationY());
     }
 
