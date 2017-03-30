@@ -6,12 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 
-public class MainActivity extends AppCompatActivity implements ScrollHolder {
+public class MainActivity extends AppCompatActivity implements HostView {
 
     protected static final String IMAGE_TRANSLATION_Y = "image_translation_y";
     protected static final String HEADER_TRANSLATION_Y = "header_translation_y";
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements ScrollHolder {
 
     private View mHeader;
     private ViewPager mViewPager;
-    private ParrllaxFragmentPagerAdapter mAdapter;
+    private ParallaxFragmentPagerAdapter mAdapter;
 
     private int tabHeight;
     private int mHeaderHeight;
@@ -33,10 +33,6 @@ public class MainActivity extends AppCompatActivity implements ScrollHolder {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        mToolbar = (Toolbar) findViewById(R.id.nb_toolBar);
-//        mToolbar.setTitle("Newbeeee");
-//        mToolbar.setTitleTextColor(getResources().getColor(R.color.textPrimary));
 
         tabHeight = getResources().getDimensionPixelOffset(R.dimen.tab_height);
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
@@ -75,21 +71,16 @@ public class MainActivity extends AppCompatActivity implements ScrollHolder {
     }
 
     @Override
-    public void onRecyclerViewScroll(RecyclerView view, int dx, int dy, int scrollY, int pagePosition) {
+    public void onRecyclerViewScroll(int scrollY, int pagePosition) {
         if (mViewPager.getCurrentItem() == pagePosition) {
             float translationY = Math.max(-scrollY, mMinHeaderTranslation);
             mHeader.setTranslationY(translationY);
             mImageView.setTranslationY(-translationY / 3);
+            Log.e("mHeader.getTranslationY:", String.valueOf(mHeader.getTranslationY()));
         }
     }
 
-    @Override
-    public void adjustScroll(int scrollHeight, int headerHeight) {
-
-    }
-
-
-    static class MFragmentAdapter extends ParrllaxFragmentPagerAdapter {
+    static class MFragmentAdapter extends ParallaxFragmentPagerAdapter {
 
 
         public MFragmentAdapter(FragmentManager fm, int numFragments) {
@@ -136,9 +127,5 @@ public class MainActivity extends AppCompatActivity implements ScrollHolder {
                     throw new IllegalArgumentException("wrong position for the fragment in vehicle page");
             }
         }
-
-
-
-
     }
 }

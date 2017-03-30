@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +19,15 @@ import java.util.Random;
  * Created by xiuxiongding on 2017/3/25.
  */
 
-public class CheeseListFragment extends Fragment implements ScrollHolder {
+public class CheeseListFragment extends Fragment implements TabHolderScrollingContent {
 
     protected static final String ARG_POSITION = "position";
     private RecyclerView mRecyclerView;
-    private ScrollHolder mScrollHolder;
+    private HostView mHostView;
     private int mScrollY;
     private LinearLayoutManager mLayoutMgr;
     private int mPosition;
+
 
     public static Fragment newInstance(int position) {
         CheeseListFragment fragment = new CheeseListFragment();
@@ -43,15 +45,15 @@ public class CheeseListFragment extends Fragment implements ScrollHolder {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mScrollHolder = (ScrollHolder) activity;
+            mHostView = (HostView) activity;
         } catch (final ClassCastException e) {
-            throw new ClassCastException(activity.toString() + "must implement ScrollHolder");
+            throw new ClassCastException(activity.toString() + "must implement TabHolderScrollingContent");
         }
     }
 
     @Override
     public void onDetach() {
-        mScrollHolder = null;
+        mHostView = null;
         super.onDetach();
     }
 
@@ -64,25 +66,22 @@ public class CheeseListFragment extends Fragment implements ScrollHolder {
         return view;
     }
 
-    private void setRecyclerVIewOnScrollListener() {
+    private void setRecyclerView() {
+        mLayoutMgr = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutMgr);
+        mRecyclerView.setAdapter(new CheeseListAdapter(getRandomSublist(Cheeses.sCheeseStrings, 30)));
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 mScrollY += dy;
+                Log.e("mScrollY in scroll:", String.valueOf(mScrollY));
 
-                if (mScrollHolder != null) {
-                    mScrollHolder.onRecyclerViewScroll(mRecyclerView, dx, dy, mScrollY, mPosition);
+                if (mHostView != null) {
+                    mHostView.onRecyclerViewScroll(mScrollY, mPosition);
                 }
             }
         });
-    }
-
-    private void setRecyclerView() {
-        mLayoutMgr = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutMgr);
-        mRecyclerView.setAdapter(new CheeseListAdapter(getRandomSublist(Cheeses.sCheeseStrings, 30)));
-        setRecyclerVIewOnScrollListener();
     }
 
     private List<String> getRandomSublist(String[] array, int amount) {
@@ -94,21 +93,13 @@ public class CheeseListFragment extends Fragment implements ScrollHolder {
         return list;
     }
 
-    private void setScrollOnLayoutManager(int scrollY) {
-        mLayoutMgr.scrollToPositionWithOffset(0, -scrollY);
-    }
-
     @Override
-    public void onRecyclerViewScroll(RecyclerView view, int dx, int dy, int scrollY, int pagePosition) {
-
-    }
-
-    @Override
-    public void adjustScroll(int scrollHeight, int headerHeight) {
+    public void adjustScroll(int scrollTranslation) {
         if (mRecyclerView == null) {
             return;
         }
-        mScrollY = headerHeight - scrollHeight;
-        setScrollOnLayoutManager(mScrollY);
+        mScrollY = -scrollTranslation;
+        Log.e("mScrollY in pageSelect:", String.valueOf(mScrollY));
+        mLayoutMgr.scrollToPositionWithOffset(0, scrollTranslation);
     }
 }

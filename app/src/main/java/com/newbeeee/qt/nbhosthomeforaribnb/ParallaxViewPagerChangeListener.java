@@ -2,6 +2,7 @@ package com.newbeeee.qt.nbhosthomeforaribnb;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -11,13 +12,13 @@ import android.view.View;
 public class ParallaxViewPagerChangeListener implements ViewPager.OnPageChangeListener {
 
     protected ViewPager mViewPager;
-    protected ParrllaxFragmentPagerAdapter mAdapter;
+    protected ParallaxFragmentPagerAdapter mAdapter;
 
     protected View mHeader;
 
     protected int mNumFragments;
 
-    public ParallaxViewPagerChangeListener(ViewPager viewPager, ParrllaxFragmentPagerAdapter adapter, View headerView) {
+    public ParallaxViewPagerChangeListener(ViewPager viewPager, ParallaxFragmentPagerAdapter adapter, View headerView) {
         mViewPager = viewPager;
         mAdapter = adapter;
         mNumFragments = mAdapter.getCount();
@@ -28,9 +29,9 @@ public class ParallaxViewPagerChangeListener implements ViewPager.OnPageChangeLi
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         int currentItem = mViewPager.getCurrentItem();
         if (positionOffsetPixels > 0) {
-            SparseArrayCompat<ScrollHolder> scrollTabHolders = mAdapter.getScrollTabHolders();
+            SparseArrayCompat<TabHolderScrollingContent> scrollTabHolders = mAdapter.getScrollTabHolders();
 
-            ScrollHolder fragmentContent;
+            TabHolderScrollingContent fragmentContent;
             if (position < currentItem) {
                 // Revealed the previous page
                 fragmentContent = scrollTabHolders.valueAt(position);
@@ -39,23 +40,22 @@ public class ParallaxViewPagerChangeListener implements ViewPager.OnPageChangeLi
                 fragmentContent = scrollTabHolders.valueAt(position + 1);
             }
 
-            fragmentContent.adjustScroll((int) (mHeader.getHeight() + mHeader.getTranslationY()),
-                    mHeader.getHeight());
+            Log.e("mHeader.getTranslationY:", String.valueOf(mHeader.getTranslationY()));
+            fragmentContent.adjustScroll((int) mHeader.getTranslationY());
         }
     }
 
     @Override
     public void onPageSelected(int position) {
-        SparseArrayCompat<ScrollHolder> scrollTabHolders = mAdapter.getScrollTabHolders();
+        SparseArrayCompat<TabHolderScrollingContent> scrollTabHolders = mAdapter.getScrollTabHolders();
 
         if (scrollTabHolders == null || scrollTabHolders.size() != mNumFragments) {
             return;
         }
 
-        ScrollHolder currentHolder = scrollTabHolders.valueAt(position);
-        currentHolder.adjustScroll(
-                (int) (mHeader.getHeight() + mHeader.getTranslationY()),
-                mHeader.getHeight());
+        TabHolderScrollingContent currentHolder = scrollTabHolders.valueAt(position);
+        Log.e("mHeader.getTranslationY:", String.valueOf(mHeader.getTranslationY()));
+        currentHolder.adjustScroll((int) mHeader.getTranslationY());
     }
 
     @Override
