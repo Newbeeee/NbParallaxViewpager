@@ -12,15 +12,11 @@ import android.view.ViewGroup;
 import com.newbeeee.qt.nbhosthomeforaribnb.BaseAdjustScrollFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.R;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 /**
  * Created by xiuxiongding on 2017/3/25.
  */
 
-public class CheeseListFragment extends BaseAdjustScrollFragment {
+public class CheeseRvFragment extends BaseAdjustScrollFragment {
 
     private RecyclerView mRecyclerView;
     private int mScrollY;
@@ -28,7 +24,7 @@ public class CheeseListFragment extends BaseAdjustScrollFragment {
 
 
     public static Fragment newInstance(int position) {
-        CheeseListFragment fragment = new CheeseListFragment();
+        CheeseRvFragment fragment = new CheeseRvFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);
@@ -38,7 +34,7 @@ public class CheeseListFragment extends BaseAdjustScrollFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_cheese_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_cheese_rv, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.nb_recyclerView);
         setRecyclerView();
         return view;
@@ -47,7 +43,7 @@ public class CheeseListFragment extends BaseAdjustScrollFragment {
     private void setRecyclerView() {
         mLayoutMgr = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutMgr);
-        mRecyclerView.setAdapter(new CheeseListAdapter(getRandomSublist(Cheeses.sCheeseStrings, 30)));
+        mRecyclerView.setAdapter(new CheeseRvAdapter(Cheeses.getRandomSublist(Cheeses.sCheeseStrings, 30)));
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -58,15 +54,6 @@ public class CheeseListFragment extends BaseAdjustScrollFragment {
                 }
             }
         });
-    }
-
-    private List<String> getRandomSublist(String[] array, int amount) {
-        ArrayList<String> list = new ArrayList<>(amount);
-        Random random = new Random();
-        while (list.size() < amount) {
-            list.add(array[random.nextInt(array.length)]);
-        }
-        return list;
     }
 
     @Override

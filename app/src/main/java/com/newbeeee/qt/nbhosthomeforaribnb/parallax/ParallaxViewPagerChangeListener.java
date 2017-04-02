@@ -33,10 +33,8 @@ public class ParallaxViewPagerChangeListener implements ViewPager.OnPageChangeLi
 
             TabHolderScrollingContent fragmentContent;
             if (position < currentItem) {
-                // Revealed the previous page
                 fragmentContent = scrollTabHolders.valueAt(position);
             } else {
-                // Revealed the next page
                 fragmentContent = scrollTabHolders.valueAt(position + 1);
             }
 

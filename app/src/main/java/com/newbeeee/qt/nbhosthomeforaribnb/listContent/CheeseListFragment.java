@@ -6,24 +6,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.newbeeee.qt.nbhosthomeforaribnb.BaseAdjustScrollFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.R;
+import com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent.Cheeses;
 
 /**
  * Created by xiuxiongding on 2017/3/30.
  */
 
-public class NumberListFragment extends BaseAdjustScrollFragment {
+public class CheeseListFragment extends BaseAdjustScrollFragment {
 
     private ListView mListView;
     private int mHeaderHeight;
     private View mListHeaderView;
 
     public static Fragment newInstance(int position) {
-        NumberListFragment fragment = new NumberListFragment();
+        CheeseListFragment fragment = new CheeseListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_POSITION, position);
         fragment.setArguments(args);
@@ -33,7 +33,7 @@ public class NumberListFragment extends BaseAdjustScrollFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_number_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_cheese_list, container, false);
         mListView = (ListView) view.findViewById(R.id.nb_listView);
         mListHeaderView = inflater.inflate(R.layout.scroll_content_header, mListView, false);
         mListView.addHeaderView(mListHeaderView);
@@ -43,7 +43,7 @@ public class NumberListFragment extends BaseAdjustScrollFragment {
     }
 
     private void setListView() {
-
+        mListView.setAdapter(new CheeseListAdapter(this.getActivity(), Cheeses.getRandomSublist(Cheeses.sCheeseStrings, 30)));
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -55,22 +55,6 @@ public class NumberListFragment extends BaseAdjustScrollFragment {
                 mHostView.onScrollingContentScroll(-mListHeaderView.getTop(), mPosition);
             }
         });
-        setAdapter();
-    }
-
-    private void setAdapter() {
-        if (getActivity() == null) return;
-
-        int size = 30;
-        String[] stringArray = new String[size];
-        for (int i = 0; i < size; ++i) {
-            stringArray[i] = "" + i;
-        }
-
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, stringArray);
-
-        mListView.setAdapter(adapter);
     }
 
     @Override

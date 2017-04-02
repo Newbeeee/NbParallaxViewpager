@@ -6,15 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.newbeeee.qt.nbhosthomeforaribnb.listContent.NumberListFragment;
+import com.newbeeee.qt.nbhosthomeforaribnb.listContent.CheeseListFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
 import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxFragmentPagerAdapter;
 import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxViewPagerChangeListener;
-import com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent.CheeseListFragment;
+import com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent.CheeseRvFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.scrollContent.CardScrollViewFragment;
 
 
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
 
     private int tabHeight;
     private int mHeaderHeight;
-    private int mMinHeaderTranslation;
+    private int mMaxHeaderTranslation;
     private int mNumFragments = 3;
 
     @Override
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
 
         tabHeight = getResources().getDimensionPixelSize(R.dimen.tab_height);
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
-        mMinHeaderTranslation = -mHeaderHeight + tabHeight;
+        mMaxHeaderTranslation = -mHeaderHeight + tabHeight;
         mImageView = (ImageView) findViewById(R.id.nb_imageView);
         mHeader = findViewById(R.id.nb_header);
         mViewPager = (ViewPager) findViewById(R.id.nb_viewPager);
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
     @Override
     public void onScrollingContentScroll(int scrollY, int pagePosition) {
         if (mViewPager.getCurrentItem() == pagePosition) {
-            float translationY = Math.max(-scrollY, mMinHeaderTranslation);
+            float translationY = Math.max(-scrollY, mMaxHeaderTranslation);
             mHeader.setTranslationY(translationY);
             mImageView.setTranslationY(-translationY / 3);
         }
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
             Fragment fragment;
             switch (position) {
                 case 0:
-                    fragment = CheeseListFragment.newInstance(0);
+                    fragment = CheeseRvFragment.newInstance(0);
                     break;
 
                 case 1:
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements HostView {
                     break;
 
                 case 2:
-                    fragment = NumberListFragment.newInstance(2);
+                    fragment = CheeseListFragment.newInstance(2);
                     break;
 
                 default:

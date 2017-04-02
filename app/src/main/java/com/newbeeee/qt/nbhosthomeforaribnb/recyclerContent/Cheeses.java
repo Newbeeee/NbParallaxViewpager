@@ -2,6 +2,8 @@ package com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent;
 
 import com.newbeeee.qt.nbhosthomeforaribnb.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -26,6 +28,15 @@ public class Cheeses {
             case 4:
                 return R.drawable.cheese_5;
         }
+    }
+
+    public static List<String> getRandomSublist(String[] array, int amount) {
+        ArrayList<String> list = new ArrayList<>(amount);
+        Random random = new Random();
+        while (list.size() < amount) {
+            list.add(array[random.nextInt(array.length)]);
+        }
+        return list;
     }
 
     public static final String[] sCheeseStrings = {

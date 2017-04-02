@@ -16,14 +16,14 @@ import java.util.List;
  * Created by xiuxiongding on 2017/3/25.
  */
 
-public class CheeseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CheeseRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<String> mValues;
 
     private static final int TYPE_HEADER = 1;
     private static final int TYPE_ITEM = 0;
 
-    public CheeseListAdapter(List<String> items) {
+    public CheeseRvAdapter(List<String> items) {
         super();
         mValues = items;
     }
@@ -74,8 +74,8 @@ public class CheeseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         public RecyclerItemViewHolder(View itemView) {
             super(itemView);
-            mImageView = (ImageView) itemView.findViewById(R.id.avatar);
-            mTextView = (TextView) itemView.findViewById(android.R.id.text1);
+            mImageView = (ImageView) itemView.findViewById(R.id.nb_img);
+            mTextView = (TextView) itemView.findViewById(R.id.nb_tv);
         }
     }
 
