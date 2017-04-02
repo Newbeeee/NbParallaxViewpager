@@ -1,19 +1,16 @@
 package com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
+import com.newbeeee.qt.nbhosthomeforaribnb.BaseAdjustScrollFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.R;
-import com.newbeeee.qt.nbhosthomeforaribnb.parallax.TabHolderScrollingContent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +20,11 @@ import java.util.Random;
  * Created by xiuxiongding on 2017/3/25.
  */
 
-public class CheeseListFragment extends Fragment implements TabHolderScrollingContent {
+public class CheeseListFragment extends BaseAdjustScrollFragment {
 
-    private static final String ARG_POSITION = "position";
     private RecyclerView mRecyclerView;
-    private HostView mHostView;
     private int mScrollY;
     private LinearLayoutManager mLayoutMgr;
-    private int mPosition;
 
 
     public static Fragment newInstance(int position) {
@@ -41,26 +35,9 @@ public class CheeseListFragment extends Fragment implements TabHolderScrollingCo
         return fragment;
     }
 
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mHostView = (HostView) activity;
-        } catch (final ClassCastException e) {
-            throw new ClassCastException(activity.toString() + "must implement TabHolderScrollingContent");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        mHostView = null;
-        super.onDetach();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mPosition = getArguments().getInt(ARG_POSITION);
+        super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_cheese_list, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.nb_recyclerView);
         setRecyclerView();
@@ -76,8 +53,6 @@ public class CheeseListFragment extends Fragment implements TabHolderScrollingCo
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 mScrollY += dy;
-                Log.e("mScrollY in scroll:", String.valueOf(mScrollY));
-
                 if (mHostView != null) {
                     mHostView.onScrollingContentScroll(mScrollY, mPosition);
                 }
@@ -100,7 +75,6 @@ public class CheeseListFragment extends Fragment implements TabHolderScrollingCo
             return;
         }
         mScrollY = -scrollTranslation;
-        Log.e("mScrollY in pageSelect:", String.valueOf(mScrollY));
         mLayoutMgr.scrollToPositionWithOffset(0, scrollTranslation);
     }
 }
