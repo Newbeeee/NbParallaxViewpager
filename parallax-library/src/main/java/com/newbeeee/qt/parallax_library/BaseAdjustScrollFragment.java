@@ -1,4 +1,4 @@
-package com.newbeeee.qt.nbhosthomeforaribnb;
+package com.newbeeee.qt.parallax_library;
 
 
 import android.app.Activity;
@@ -7,9 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
-import com.newbeeee.qt.nbhosthomeforaribnb.parallax.TabHolderScrollingContent;
 
 /**
  * Created by xiuxiongding on 2017/4/2.

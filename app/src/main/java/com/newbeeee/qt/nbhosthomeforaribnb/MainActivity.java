@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.newbeeee.qt.nbhosthomeforaribnb.listContent.CheeseListFragment;
-import com.newbeeee.qt.nbhosthomeforaribnb.parallax.HostView;
-import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxFragmentPagerAdapter;
-import com.newbeeee.qt.nbhosthomeforaribnb.parallax.ParallaxViewPagerChangeListener;
+import com.newbeeee.qt.parallax_library.HostView;
+import com.newbeeee.qt.parallax_library.ParallaxFragmentPagerAdapter;
+import com.newbeeee.qt.parallax_library.ParallaxViewPagerChangeListener;
 import com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent.CheeseRvFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.scrollContent.CardScrollViewFragment;
 

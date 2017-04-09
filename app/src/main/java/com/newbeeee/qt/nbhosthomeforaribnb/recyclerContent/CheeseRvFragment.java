@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.newbeeee.qt.nbhosthomeforaribnb.BaseAdjustScrollFragment;
+import com.newbeeee.qt.parallax_library.BaseAdjustScrollFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.R;
 
 /**

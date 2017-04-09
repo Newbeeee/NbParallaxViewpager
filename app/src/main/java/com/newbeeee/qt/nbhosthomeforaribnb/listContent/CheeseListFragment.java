@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.newbeeee.qt.nbhosthomeforaribnb.BaseAdjustScrollFragment;
+import com.newbeeee.qt.parallax_library.BaseAdjustScrollFragment;
 import com.newbeeee.qt.nbhosthomeforaribnb.R;
 import com.newbeeee.qt.nbhosthomeforaribnb.recyclerContent.Cheeses;
 

@@ -1,4 +1,4 @@
-package com.newbeeee.qt.nbhosthomeforaribnb.scrollContent;
+package com.newbeeee.qt.parallax_library;
 
 import android.content.Context;
 import android.util.AttributeSet;
